@@ -12,11 +12,25 @@ td {
   font-size: 4em;
 }
 
-td button {
+td div {
   margin: 0px;
   padding: 0px;
   font-size: 1em;
   height: 100px;
   width: 100px;
   background-color: white;
+}
+
+td div:hover {
+  background-color: lightblue;
+}
+
+td div span {
+  vertical-align:middle;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1em;
+  height: 100px;
+  width: 100px;
+
 }

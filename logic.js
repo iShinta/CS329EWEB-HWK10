@@ -12,7 +12,7 @@ function drawboard(){
       //res += ("<img style=\"width: 100px; height: 100px;\" src=\"" + formatVal(toArrayVal(i.toString() + j.toString())) + ".jpeg\" />");
       //res += ("</a>");
 
-      res += ("<button type=\"button\" id=\"b" + i + j + "\" title=\"\" onclick=\"clicon(this.id);\" value=\"\">.</button>");
+      res += ("<div id=\"b" + i + j + "\" onclick=\"clicon(this.id);\"></div>");
 
       res += ("</td>");
     }
