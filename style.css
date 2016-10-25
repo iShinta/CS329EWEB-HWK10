@@ -4,8 +4,19 @@ body {
 }
 
 td {
+  margin: 0px;
+  padding: 0px;
   border: solid 1px;
   width: 100px;
   height: 100px;
   font-size: 4em;
+}
+
+td button {
+  margin: 0px;
+  padding: 0px;
+  font-size: 1em;
+  height: 100px;
+  width: 100px;
+  background-color: white;
 }

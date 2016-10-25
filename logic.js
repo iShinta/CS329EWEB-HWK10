@@ -12,7 +12,7 @@ function drawboard(){
       //res += ("<img style=\"width: 100px; height: 100px;\" src=\"" + formatVal(toArrayVal(i.toString() + j.toString())) + ".jpeg\" />");
       //res += ("</a>");
 
-      res += ("<input type=\"button\" style=\"font-size: 1em; height: 100px; width: 100px; background-color: white;\" id=\"b" + i + j + "\" title=\"\" onclick=\"clicon(this.id);\" value=\"\" />");
+      res += ("<button type=\"button\" id=\"b" + i + j + "\" title=\"\" onclick=\"clicon(this.id);\" value=\"\">.</button>");
 
       res += ("</td>");
     }
@@ -25,6 +25,6 @@ function drawboard(){
 
 function clicon(cell){
   val = parseInt(cell.charAt(1))*4 + parseInt(cell.charAt(2));
-  document.getElementById(cell).value = gameArray[val];
-  $("#" + cell).fadeOut(3000);
+  document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\">" + gameArray[val] + "</span>";
+  $("#b" + cell).fadeOut(3000);
 }
