@@ -31,7 +31,7 @@ function drawboard(){
       //res += ("<img style=\"width: 100px; height: 100px;\" src=\"" + formatVal(toArrayVal(i.toString() + j.toString())) + ".jpeg\" />");
       //res += ("</a>");
 
-      res += ("<div id=\"b" + i + j + "\" onclick=\"clicon(this.id);\"></div>");
+      res += ("<button id=\"b" + i + j + "\" onclick=\"clicon(this.id);\"></button>");
 
       res += ("</td>");
     }
@@ -56,9 +56,14 @@ function clicon(cell){
         clic1 = gameArray[val];
         clic1cell = cell;
       }else if(clic2cell == ""){
-        document.getElementById("activeClics").innerHTML = "Active clics: 2";
-        clic2 = gameArray[val];
-        clic2cell = cell;
+        //Before registering clic2, we want to make sure that it is not the same as clic1
+        if(cell != clic1cell){
+          document.getElementById("activeClics").innerHTML = "Active clics: 2";
+          clic2 = gameArray[val];
+          clic2cell = cell;
+        }else{
+          return;
+        }
       }
       document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\">" + gameArray[val] + "</span>";
 
@@ -70,11 +75,11 @@ function clicon(cell){
 function activeClicDecrease(){
   if(clic1cell != ""){
     if(clic2cell == ""){ //Clic 1 and no Clic 2
-      $("#b" + clic1cell).fadeOut(1000);
+      $("#b" + clic1cell).fadeTo(1000, 0);
     }else{  //Clic 1 and 2
       if(clic1 != clic2){ //Not the same numbers
-        $("#b" + clic1cell).fadeOut(1000);
-        $("#b" + clic2cell).fadeOut(1000);
+        $("#b" + clic1cell).fadeTo(1000, 0);
+        $("#b" + clic2cell).fadeTo(1000, 0);
       }else{
         val = parseInt(clic1cell.charAt(1))*4 + parseInt(clic1cell.charAt(2));
         gameState[val] = true;

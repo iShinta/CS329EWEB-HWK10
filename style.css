@@ -3,6 +3,11 @@ body {
   padding: 0px;
 }
 
+tr {
+  margin: 0px;
+  padding: 0px;
+}
+
 td {
   margin: 0px;
   padding: 0px;
@@ -12,7 +17,7 @@ td {
   font-size: 4em;
 }
 
-td div {
+td button {
   margin: 0px;
   padding: 0px;
   font-size: 1em;
@@ -21,7 +26,7 @@ td div {
   background-color: white;
 }
 
-td div:hover {
+td button:hover {
   background-color: lightblue;
 }
 
