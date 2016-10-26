@@ -1,8 +1,25 @@
-var gameArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
-var activeClic = 0;
+var gameArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var gameState = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 var nbClic = 0;
+var winState = false;
+var clic1 = "";
+var clic2 = "";
+var clic1cell = "";
+var clic2cell = "";
 
 function drawboard(){
+  clic1 = "";
+  clic2 = "";
+  clic1cell = "";
+  clic2cell = "";
+  nbClic = 0;
+  winState = false;
+  gameArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+  gameState = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+
+  document.getElementById("nbclics").innerHTML = "Number of clics: " + nbClic;
+  document.getElementById("activeClics").innerHTML = "Active clics: 0";
+
   res = ("<table border = \"1\">");
   for(var i = 0; i < 4; i++){
     res += ("<tr>");
@@ -26,29 +43,60 @@ function drawboard(){
 }
 
 function clicon(cell){
-  if(activeClic < 2){
-    nbClic++;
-    document.getElementById("nbclics").innerHTML = "Number of clics: " + nbClic;
-
-    val = parseInt(cell.charAt(1))*4 + parseInt(cell.charAt(2));
-    $("#b" + cell).fadeOut(3000);
-    document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\">" + gameArray[val] + "</span>";
-
-    activeClic++;
-    document.getElementById("activeClics").innerHTML = "Active clics: " + activeClic;
-    if(activeClic >=2){
-      clicDisabled = true;
-    }
-    setTimeout(activeClicDecrease, 3000);
-  }else{
+  if(clic1cell != "" && clic2cell != ""){
     return;
+  }else{
+    val = parseInt(cell.charAt(1))*4 + parseInt(cell.charAt(2));
+    if(!gameState[val]){
+      if (clic1cell == "") {
+        nbClic++;
+        document.getElementById("nbclics").innerHTML = "Number of clics: " + nbClic;
+
+        document.getElementById("activeClics").innerHTML = "Active clics: 1";
+        clic1 = gameArray[val];
+        clic1cell = cell;
+      }else if(clic2cell == ""){
+        document.getElementById("activeClics").innerHTML = "Active clics: 2";
+        clic2 = gameArray[val];
+        clic2cell = cell;
+      }
+      document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\">" + gameArray[val] + "</span>";
+
+      window.setTimeout(activeClicDecrease, 3000);
+    }
   }
-
-
 }
 
 function activeClicDecrease(){
-  //alert("hello");
-  activeClic--;
-  document.getElementById("activeClics").innerHTML = "Active clics: " + activeClic;
+  if(clic1cell != ""){
+    if(clic2cell == ""){ //Clic 1 and no Clic 2
+      $("#b" + clic1cell).fadeOut(1000);
+    }else{  //Clic 1 and 2
+      if(clic1 != clic2){ //Not the same numbers
+        $("#b" + clic1cell).fadeOut(1000);
+        $("#b" + clic2cell).fadeOut(1000);
+      }else{
+        val = parseInt(clic1cell.charAt(1))*4 + parseInt(clic1cell.charAt(2));
+        gameState[val] = true;
+        val = parseInt(clic2cell.charAt(1))*4 + parseInt(clic2cell.charAt(2));
+        gameState[val] = true;
+
+        winState = true;
+        for(i = 0; i < gameState.length; i++){
+          if(gameState[i] == false){
+            winState = false;
+          }
+        }
+        if(winState){
+          alert("You won in " + nbClic + " tries!");
+        }
+      }
+    }
+
+    clic1 = "";
+    clic1cell = "";
+    clic2 = "";
+    clic2cell = "";
+    document.getElementById("activeClics").innerHTML = "Active clics: 0";
+  }
 }
