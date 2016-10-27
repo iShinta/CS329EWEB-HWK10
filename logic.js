@@ -8,6 +8,8 @@ var gameState = [false, false, false, false, false, false, false, false, false, 
 var nbClic = 0;
 //State of the Game
 var winState = false;
+//Number or Images
+var imgOK = false;
 
 //Value of cell
 var clic1 = "";
@@ -20,6 +22,11 @@ var clic2cell = "";
 
 //Draws the Board when button is clicked
 function drawboard(){
+  if(document.getElementById("imgcheck").checked){
+    imgOK = true;
+  }else{
+    imgOK = false;
+  }
   //Reset Global Variables
   clic1 = "";
   clic2 = "";
@@ -43,7 +50,7 @@ function drawboard(){
   document.getElementById("nbclics").innerHTML = "Number of clics: " + nbClic;
   document.getElementById("activeClics").innerHTML = "Active clics: 0";
 
-  res = ("<table border = \"1\">");
+  res = ("<table id=\"table\" border = \"1\">");
   for(var i = 0; i < 4; i++){
     res += ("<tr>");
     for(var j = 0; j < 4; j++){
@@ -103,7 +110,11 @@ function clicon(cell){
       }
 
       //Turn up cell
-      document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\">" + gameArray[val] + "</span>";
+      if(imgOK){
+        document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\"><img src=\"img" + gameArray[val] + ".png\" /></span>";
+      }else{
+        document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\">" + gameArray[val] + "</span>";
+      }
     }
   }
 }

@@ -12,17 +12,17 @@ td {
   margin: 0px;
   padding: 0px;
   border: solid 1px;
-  width: 100px;
-  height: 100px;
-  font-size: 4em;
+  width: 150px;
+  height: 150px;
+  font-size: 6em;
 }
 
 td button {
   margin: 0px;
   padding: 0px;
   font-size: 1em;
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   background-color: white;
 }
 
@@ -35,7 +35,18 @@ td div span {
   margin: 0px;
   padding: 0px;
   font-size: 1em;
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
+}
 
+#content{
+  text-align: center;
+}
+
+#board{
+  margin: auto;
+}
+
+#table{
+  margin: auto;
 }
