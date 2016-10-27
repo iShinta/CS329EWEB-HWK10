@@ -111,7 +111,7 @@ function clicon(cell){
 
       //Turn up cell
       if(imgOK){
-        document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\"><img src=\"img" + gameArray[val] + ".png\" /></span>";
+        document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\"><img src=\"img" + gameArray[val] + ".jpg\" /></span>";
       }else{
         document.getElementById(cell).innerHTML = "<span id=\"b" + cell + "\">" + gameArray[val] + "</span>";
       }
